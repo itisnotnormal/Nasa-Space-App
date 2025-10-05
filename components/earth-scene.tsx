@@ -18,7 +18,7 @@ function Earth({ onRegionClick }: { onRegionClick: (lat: number, lon: number) =>
   // Auto-rotate Earth
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.001
+      meshRef.current.rotation.y += 0.0003141592653589793 // ~0.000314 for slow rotation
     }
   })
 
@@ -127,7 +127,7 @@ export default function EarthScene() {
 
   return (
     <>
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }} gl={{ antialias: true }} className="w-full h-full">
+      <Canvas camera={{ position: [0, 0, 12], fov: 8 }} gl={{ antialias: true }} className="w-full h-full">
         <color attach="background" args={["#000000"]} />
 
         {/* Lighting */}
@@ -148,7 +148,7 @@ export default function EarthScene() {
         <CameraController />
 
         {/* Orbit controls for manual rotation */}
-        <OrbitControls enableZoom={true} enablePan={false} minDistance={5} maxDistance={15} zoomSpeed={0.5} />
+        <OrbitControls enableZoom={true} enablePan={false} minDistance={8} maxDistance={20} zoomSpeed={0.3} />
       </Canvas>
 
       {showDataPanel && selectedRegion && (
